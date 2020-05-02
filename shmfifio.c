@@ -38,12 +38,27 @@ int sem_setval(int sem_id , int val_t)
 	}
 	return 0;
 }
-int sem_p()
+int sem_p(int semid)
 {
-
+	sembuf_S semopt = {0 , -1 , 0};
+	int ret = semop(semid, &semopt, 1);
+	if(-1 == ret)
+	{
+		printf("fail to sem_p\n");
+		return -1;
+	}
+	return 0;
 }
-int sem_v()
+int sem_v(int semid)
 {
+	sembuf_S semopt = {0 , 1 , 0};
+	int ret = semop(semid, &semopt, 1);
+	if(-1 == ret)
+	{
+		printf("fail to sem_p\n");
+		return -1;
+	}
+	return 0;
 	
 }
 shmfifo_s* shmfifo_init(int key , int blksize , int blocks)

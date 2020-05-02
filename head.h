@@ -32,4 +32,9 @@ typedef struct shmfifo{
 	int shm_full;
 	int shm_empty;
 }shmfifo_s;
+typedef struct sembuf{
+	short sem_num;
+	short sem_op;
+	short sem_flg;
+}sembuf_S;
 #endif
